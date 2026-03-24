@@ -8,7 +8,7 @@ Druga procedura sortuje liczbę za pomocą sortowania bąbelkowego.
 
 :white_check_mark: 3.0 | Procedura do generowania 50 losowych liczb od 0 do 100
 
-:x: 3.5 | Procedura do sortowania liczb bąbelkowo
+:white_check_mark: 3.5 | Procedura do sortowania liczb bąbelkowo
 
 :x: 4.0 | Dodanie parametrów do procedury losującej określających zakres losowania: od, do, ile
 
