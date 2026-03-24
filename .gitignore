@@ -1,0 +1,8 @@
+.vscode
+
+*.o
+*.x
+
+/GPATH
+/GRTAGS
+/GTAGS
