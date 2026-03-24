@@ -1,15 +1,13 @@
 program exercise1;
-type
-    arr_50 = array[0..49] of integer;
 var
-    arr: arr_50;
+    arr: array[0..49] of integer;
     i: integer;
 
-procedure generate(var arr: arr_50);
+procedure generate(var arr: array of integer);
 var
     i: integer;
 begin
-    for i := 0 to 49 do arr[i] := random(101);
+    for i := 0 to high(arr) do arr[i] := random(101);
 end;
 
 begin
@@ -18,6 +16,6 @@ begin
     generate(arr);
 
     write('[');
-    for i := 0 to 48 do write(arr[i], ', ');
-    writeln(arr[49], ']');
+    for i := 0 to high(arr) - 1 do write(arr[i], ', ');
+    writeln(arr[high(arr)], ']');
 end.
