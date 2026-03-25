@@ -1,7 +1,6 @@
 program exercise1;
 var
-    arr: array[0..49] of integer;
-    i: integer;
+    arr1, arr2: array of integer;
 
 procedure generate(var arr: array of integer; min, max, n: integer);
 var
@@ -29,24 +28,81 @@ begin
             end;
 end;
 
+function compareArrays(var arr1, arr2: array of integer): boolean;
+var
+    i: integer;
+begin
+    if length(arr1) <> length(arr2) then
+    begin
+        compareArrays := false;
+        exit;
+    end;
+
+    for i := 0 to high(arr1) do
+    begin
+        if arr1[i] <> arr2[i] then
+        begin
+            compareArrays := false;
+            exit;
+        end;
+    end;
+
+    compareArrays := true;
+end;
+
+function checkArrayValuesRange(var arr: array of integer; min, max, n: integer): boolean;
+var
+    i: integer;
+begin
+    for i := 0 to n - 1 do
+    begin
+        if (arr[i] < min) or (arr[i] > max) then
+        begin
+            checkArrayValuesRange := false;
+            exit
+        end;
+    end;
+
+    checkArrayValuesRange := true;
+end;
+
+procedure test(num: integer; desc: string; res: boolean);
+var
+    result: string;
+begin
+    if res then
+        result := 'passed'
+    else
+        result := 'failed';
+
+    writeln('test ', num, ' - ', desc, ': ', result, '.')
+end;
+
 begin
     randomize(); { initialize random number generator }
 
-    generate(arr);
+    setLength(arr1, 50);
+    setLength(arr2, 50);
 
-    write('[');
-    for i := 0 to high(arr) - 1 do write(arr[i], ', ');
-    writeln(arr[high(arr)], ']');
+    generate(arr1);
+    generate(arr2);
+    test(1, 'generate procedure produces different arrays', not compareArrays(arr1, arr2));
 
-    bubbleSort(arr);
+    generate(arr1, 30, 40, length(arr1));
+    test(2, 'generated values are within specified range', checkArrayValuesRange(arr1, 30, 40, length(arr1)));
 
-    write('[');
-    for i := 0 to high(arr) - 1 do write(arr[i], ', ');
-    writeln(arr[high(arr)], ']');
+    arr1 := [3, 12, 23, 43, 45, 77, 86];
+    arr2 := [3, 12, 23, 43, 45, 77, 86];
+    bubbleSort(arr1);
+    test(3, 'bubblesort keeps sorted array unchanged', compareArrays(arr1, arr2));
 
-    generate(arr, 20, 40, 10);
+    arr1 := [45, 23, 86, 3, 43, 77, 12];
+    arr2 := [3, 12, 23, 43, 45, 77, 86];
+    bubbleSort(arr1);
+    test(4, 'bubblesort correctly sorts array with different values', compareArrays(arr1, arr2));
 
-    write('[');
-    for i := 0 to 8 do write(arr[i], ', ');
-    writeln(arr[9], ']');
+    arr1 := [45, 86, 23, 77, 86, 45, 3, 43, 77, 86, 12];
+    arr2 := [3, 12, 23, 43, 45, 45, 77, 77, 86, 86, 86];
+    bubbleSort(arr1);
+    test(5, 'bubblesort correctly sorts array with duplicate values', compareArrays(arr1, arr2));
 end.

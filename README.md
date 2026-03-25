@@ -12,7 +12,7 @@ Druga procedura sortuje liczbę za pomocą sortowania bąbelkowego.
 
 :white_check_mark: 4.0 | Dodanie parametrów do procedury losującej określających zakres losowania: od, do, ile
 
-:x: 4.5 | 5 testów jednostkowych testujących procedury
+:white_check_mark: 4.5 | 5 testów jednostkowych testujących procedury
 
 :x: 5.0 | Skrypt w bashu do uruchamiania aplikacji w Pascalu via docker
 
