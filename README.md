@@ -10,7 +10,7 @@ Druga procedura sortuje liczbę za pomocą sortowania bąbelkowego.
 
 :white_check_mark: 3.5 | Procedura do sortowania liczb bąbelkowo
 
-:x: 4.0 | Dodanie parametrów do procedury losującej określających zakres losowania: od, do, ile
+:white_check_mark: 4.0 | Dodanie parametrów do procedury losującej określających zakres losowania: od, do, ile
 
 :x: 4.5 | 5 testów jednostkowych testujących procedury
 
