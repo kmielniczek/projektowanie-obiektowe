@@ -17,4 +17,7 @@ class ProductInput
     #[Assert\Type('numeric')]
     #[Assert\PositiveOrZero]
     public string $price;
+
+    #[Assert\Positive]
+    public ?int $categoryId = null;
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Dto\ProductInput;
 use App\Dto\ProductUpdateInput;
 use App\Entity\Product;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,9 +29,20 @@ final class ProductController extends AbstractController
     public function create(
         #[MapRequestPayload] ProductInput $productInput,
         ObjectMapperInterface $objectMapper,
+        CategoryRepository $categoryRepository,
         EntityManagerInterface $entityManager
     ): JsonResponse {
         $product = $objectMapper->map($productInput);
+
+        if ($productInput->categoryId !== null) {
+            $category = $categoryRepository->find($productInput->categoryId);
+            if (!$category) {
+                return $this->json(['error' => "Category with id $productInput->categoryId not found."], 404);
+            }
+
+            $product->setCategory($category);
+        }
+
         $entityManager->persist($product);
         $entityManager->flush();
 
@@ -48,9 +60,20 @@ final class ProductController extends AbstractController
         #[MapRequestPayload] ProductUpdateInput $productInput,
         Product $product,
         ObjectMapperInterface $objectMapper,
+        CategoryRepository $categoryRepository,
         EntityManagerInterface $entityManager
     ): JsonResponse {
         $objectMapper->map($productInput, $product);
+
+        if ($productInput->categoryId !== null) {
+            $category = $categoryRepository->find($productInput->categoryId);
+            if (!$category) {
+                return $this->json(['error' => "Category with id $productInput->categoryId not found."], 404);
+            }
+
+            $product->setCategory($category);
+        }
+
         $entityManager->flush();
 
         return $this->json($product, context: ['groups' => 'api']);

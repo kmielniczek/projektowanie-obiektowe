@@ -24,6 +24,11 @@ class Product
     #[Groups('api')]
     private ?string $price = null;
 
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: true)]
+    #[Groups('api')]
+    private ?Category $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,6 +54,18 @@ class Product
     public function setPrice(string $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
