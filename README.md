@@ -23,12 +23,12 @@ Należy stworzyć aplikację webową na bazie frameworka Symfony
 na obrazie kprzystalski/projobj-php:latest.
 Baza danych dowolna, sugeruję SQLite.
 
-:x: 3.0 | Należy stworzyć jeden model z kontrolerem z produktami, zgodnie z CRUD (JSON)
+:white_check_mark: 3.0 | Należy stworzyć jeden model z kontrolerem z produktami, zgodnie z CRUD (JSON) [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/6c2064097350a8f86848ac8812cbc9aada448618)
 
-:x: 3.5 | Należy stworzyć skrypty do testów endpointów via curl (JSON)
+:white_check_mark: 3.5 | Należy stworzyć skrypty do testów endpointów via curl (JSON) [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/2a5d320a37f6c7066cb0322761a519bf10e91ec4)
 
-:x: 4.0 | Należy stworzyć dwa dodatkowe kontrolery wraz z modelami (JSON)
+:white_check_mark: 4.0 | Należy stworzyć dwa dodatkowe kontrolery wraz z modelami (JSON) [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/7603e4865c380e28cf048c2a151c401746eda868)
 
-:x: 4.5 | Należy stworzyć widoki do wszystkich kontrolerów
+:white_check_mark: 4.5 | Należy stworzyć widoki do wszystkich kontrolerów [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/41ca7ff4abe2f1c39db21b2fff650d9b2e92514a)
 
 :x: 5.0 | Stworzenie panelu administracyjnego
