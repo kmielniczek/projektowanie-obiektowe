@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Orders</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-gray-100">
+        <nav class="bg-white border-b border-gray-200 shadow">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <a href="index.html"
+                            class="text-2xl font-bold text-blue-600 hover:text-blue-800 text-decoration-none">Products
+                            Store</a>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="index.html"
+                            class="text-gray-700 hover:bg-gray-100 hover:text-blue-600 px-3 py-2 rounded-md font-medium">Home</a>
+                        <a href="products.html"
+                            class="text-gray-700 hover:bg-gray-100 hover:text-blue-600 px-3 py-2 rounded-md font-medium">Products</a>
+                        <a href="categories.html"
+                            class="text-gray-700 hover:bg-gray-100 hover:text-blue-600 px-3 py-2 rounded-md font-medium">Categories</a>
+                        <a href="orders.html"
+                            class="text-gray-700 bg-blue-100 hover:bg-blue-200 px-3 py-2 rounded-md font-bold">Orders</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <!-- Alert Messages -->
+            <div id="successAlert"
+                class="hidden mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg"></div>
+            <div id="errorAlert" class="hidden mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg"></div>
+
+            <div class="bg-white rounded-lg shadow-lg">
+                <!-- Header with Create Button -->
+                <div class="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-gray-900">Orders</h2>
+                    <button onclick="showCreateForm()"
+                        class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg">
+                        + New Order
+                    </button>
+                </div>
+
+                <!-- Create Form -->
+                <div id="createForm" class="hidden border-b border-gray-200 p-6 bg-gray-50">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Create New Order</h3>
+                    <form onsubmit="createOrder(event)">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-2">Customer Name *</label>
+                            <input type="text" id="createCustomerName" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                placeholder="Customer name">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-2">Customer Email *</label>
+                            <input type="email" id="createCustomerEmail" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                placeholder="customer@example.com">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-2">Status</label>
+                            <select id="createStatus"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option value="pending">Pending</option>
+                                <option value="confirmed">Confirmed</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-medium mb-2">Products * (Hold Ctrl/Cmd to select
+                                multiple)</label>
+                            <select id="createProducts" multiple required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                size="5">
+                            </select>
+                        </div>
+                        <div class="flex gap-2">
+                            <button type="submit"
+                                class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg">Create</button>
+                            <button type="button" onclick="hideCreateForm()"
+                                class="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Orders Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-100 border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-900">ID</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-900">Customer</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-900">Status</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-900">Products</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-900">Total</th>
+                                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-900">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTable">
+                            <tr class="border-b border-gray-200">
+                                <td colspan="6" class="px-6 py-8 text-center text-gray-500">Loading orders...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- View Modal -->
+        <div id="viewModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+            <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center block sm:p-0">
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" onclick="closeViewModal()">
+                </div>
+                <div
+                    class="relative inline-block align-bottom bg-white rounded-lg text-left max-h-[calc(100vh-4rem)] overflow-y-auto shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Order Details</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-1">ID</label>
+                                <p class="text-gray-900" id="viewId">-</p>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-1">Customer Name</label>
+                                <p class="text-gray-900" id="viewCustomerName">-</p>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-1">Customer Email</label>
+                                <p class="text-gray-900" id="viewCustomerEmail">-</p>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-1">Status</label>
+                                <p class="text-gray-900" id="viewStatus">-</p>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-1">Products</label>
+                                <p class="text-gray-900" id="viewProducts">-</p>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-1">Total Price</label>
+                                <p class="text-gray-900" id="viewTotalPrice">-</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 justify-end mt-6">
+                            <button type="button" onclick="closeViewModal()"
+                                class="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg">Close</button>
+                            <button type="button" onclick="switchToEditModal()"
+                                class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Modal -->
+        <div id="editModal" class="hidden fixed inset-0 z-50 overflow-y-auto">
+            <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center block sm:p-0">
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" onclick="closeEditModal()">
+                </div>
+                <div
+                    class="relative inline-block align-bottom bg-white rounded-lg text-left max-h-[calc(100vh-4rem)] overflow-y-auto shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Edit Order</h3>
+                        <form onsubmit="updateOrder(event)">
+                            <input type="hidden" id="editId">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-medium mb-2">Customer Name *</label>
+                                <input type="text" id="editCustomerName" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-medium mb-2">Customer Email *</label>
+                                <input type="email" id="editCustomerEmail" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-medium mb-2">Status</label>
+                                <select id="editStatus"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                    <option value="pending">Pending</option>
+                                    <option value="confirmed">Confirmed</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="delivered">Delivered</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-medium mb-2">Products * (Hold Ctrl/Cmd to select
+                                    multiple)</label>
+                                <select id="editProducts" multiple required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    size="5">
+                                </select>
+                            </div>
+                            <div class="mb-4 p-3 bg-gray-100 rounded">
+                                <p class="text-sm text-gray-700"><strong>Total Price:</strong> $<span
+                                        id="editTotalPrice">0.00</span></p>
+                            </div>
+                            <div class="flex gap-2 justify-end">
+                                <button type="button" onclick="closeEditModal()"
+                                    class="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg">Cancel</button>
+                                <button type="submit"
+                                    class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg">Update</button>
+                                <button type="button" onclick="deleteOrder()"
+                                    class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const API_BASE_URL = '/api';
+            let allProducts = [];
+
+            async function fetchAPI(url, options = {}) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({}));
+                        throw new Error(errorData.error || `HTTP ${response.status}`);
+                    }
+                    return response.status === 204 ? null : await response.json();
+                } catch (error) {
+                    showError(error.message);
+                    throw error;
+                }
+            }
+
+            function showSuccess(message) {
+                const alert = document.getElementById('successAlert');
+                alert.textContent = message;
+                alert.classList.remove('hidden');
+                setTimeout(() => alert.classList.add('hidden'), 3000);
+            }
+
+            function showError(message) {
+                const alert = document.getElementById('errorAlert');
+                alert.textContent = message;
+                alert.classList.remove('hidden');
+                setTimeout(() => alert.classList.add('hidden'), 5000);
+            }
+
+            async function loadProducts() {
+                try {
+                    allProducts = await fetchAPI(`${API_BASE_URL}/products`);
+                    const createSelect = document.getElementById('createProducts');
+                    const editSelect = document.getElementById('editProducts');
+
+                    const options = allProducts.map(prod => `<option value="${prod.id}">${prod.name} (${parseFloat(prod.price).toFixed(2)})</option>`).join('');
+                    createSelect.innerHTML = options;
+                    editSelect.innerHTML = options;
+                } catch (error) {
+                    console.error('Error loading products:', error);
+                }
+            }
+
+            async function loadOrders() {
+                try {
+                    const orders = await fetchAPI(`${API_BASE_URL}/orders`);
+                    const table = document.getElementById('ordersTable');
+
+                    if (!orders || orders.length === 0) {
+                        table.innerHTML = '<tr class="border-b border-gray-200"><td colspan="6" class="px-6 py-8 text-center text-gray-500">No orders found</td></tr>';
+                        return;
+                    }
+
+                    table.innerHTML = orders.map(order => `
+                    <tr class="border-b border-gray-200 hover:bg-gray-50 cursor-pointer" onclick="openViewModal(${order.id})">
+                        <td class="px-6 py-4 text-sm text-gray-900">${order.id}</td>
+                        <td class="px-6 py-4 text-sm text-gray-900"><span class="font-bold">${order.customerName}</span></td>
+                        <td class="px-6 py-4 text-sm">
+                            <span class="px-2 py-1 rounded text-white text-xs font-semibold ${getStatusColor(order.status)}">
+                                ${order.status}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-900">${order.products.length} item(s)</td>
+                        <td class="px-6 py-4 text-sm text-gray-900">${parseFloat(order.totalPrice).toFixed(2)}</td>
+                        <td class="px-6 py-4 text-sm" onclick="event.stopPropagation()">
+                            <button onclick="openEditModal(${order.id})" class="bg-purple-600 hover:bg-purple-700 text-white font-medium py-1 px-3 rounded-lg">Edit</button>
+                        </td>
+                    </tr>
+                `).join('');
+                } catch (error) {
+                    console.error('Error loading orders:', error);
+                }
+            }
+
+            function getStatusColor(status) {
+                const colors = {
+                    'pending': 'bg-yellow-500',
+                    'confirmed': 'bg-blue-500',
+                    'shipped': 'bg-cyan-500',
+                    'delivered': 'bg-green-500',
+                    'cancelled': 'bg-red-500'
+                };
+                return colors[status] || 'bg-gray-500';
+            }
+
+            function showCreateForm() {
+                document.getElementById('createForm').classList.remove('hidden');
+            }
+
+            function hideCreateForm() {
+                document.getElementById('createForm').classList.add('hidden');
+                document.getElementById('createCustomerName').value = '';
+                document.getElementById('createCustomerEmail').value = '';
+                document.getElementById('createStatus').value = 'pending';
+                document.getElementById('createProducts').value = [];
+            }
+
+            async function createOrder(event) {
+                event.preventDefault();
+                const customerName = document.getElementById('createCustomerName').value;
+                const customerEmail = document.getElementById('createCustomerEmail').value;
+                const status = document.getElementById('createStatus').value;
+                const productsSelect = document.getElementById('createProducts');
+                const productIds = Array.from(productsSelect.selectedOptions).map(opt => parseInt(opt.value));
+
+                if (productIds.length === 0) {
+                    showError('Please select at least one product');
+                    return;
+                }
+
+                try {
+                    await fetchAPI(`${API_BASE_URL}/orders`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            customerName,
+                            customerEmail,
+                            status,
+                            productIds
+                        })
+                    });
+                    showSuccess('Order created successfully');
+                    hideCreateForm();
+                    loadOrders();
+                } catch (error) {
+                    console.error('Error creating order:', error);
+                }
+            }
+
+            async function openViewModal(id) {
+                try {
+                    const order = await fetchAPI(`${API_BASE_URL}/orders/${id}`);
+                    document.getElementById('viewId').textContent = order.id;
+                    document.getElementById('viewCustomerName').textContent = order.customerName;
+                    document.getElementById('viewCustomerEmail').textContent = order.customerEmail;
+                    document.getElementById('viewStatus').textContent = order.status;
+                    document.getElementById('viewProducts').textContent = order.products.map(p => p.name).join(', ');
+                    document.getElementById('viewTotalPrice').textContent = '$' + parseFloat(order.totalPrice).toFixed(2);
+                    document.getElementById('viewModal').classList.remove('hidden');
+                    window.currentOrderId = id;
+                } catch (error) {
+                    console.error('Error loading order:', error);
+                }
+            }
+
+            function closeViewModal() {
+                document.getElementById('viewModal').classList.add('hidden');
+            }
+
+            async function switchToEditModal() {
+                closeViewModal();
+                await openEditModal(window.currentOrderId);
+            }
+
+            async function openEditModal(id) {
+                try {
+                    const order = await fetchAPI(`${API_BASE_URL}/orders/${id}`);
+                    document.getElementById('editId').value = order.id;
+                    document.getElementById('editCustomerName').value = order.customerName;
+                    document.getElementById('editCustomerEmail').value = order.customerEmail;
+                    document.getElementById('editStatus').value = order.status;
+
+                    const editProducts = document.getElementById('editProducts');
+                    const productIds = order.products.map(p => p.id);
+                    Array.from(editProducts.options).forEach(option => {
+                        option.selected = productIds.includes(parseInt(option.value));
+                    });
+
+                    document.getElementById('editTotalPrice').textContent = parseFloat(order.totalPrice).toFixed(2);
+                    document.getElementById('editModal').classList.remove('hidden');
+                } catch (error) {
+                    console.error('Error loading order:', error);
+                }
+            }
+
+            function closeEditModal() {
+                document.getElementById('editModal').classList.add('hidden');
+            }
+
+            async function updateOrder(event) {
+                event.preventDefault();
+                const id = document.getElementById('editId').value;
+                const customerName = document.getElementById('editCustomerName').value;
+                const customerEmail = document.getElementById('editCustomerEmail').value;
+                const status = document.getElementById('editStatus').value;
+                const productsSelect = document.getElementById('editProducts');
+                const productIds = Array.from(productsSelect.selectedOptions).map(opt => parseInt(opt.value));
+
+                if (productIds.length === 0) {
+                    showError('Please select at least one product');
+                    return;
+                }
+
+                try {
+                    await fetchAPI(`${API_BASE_URL}/orders/${id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            customerName,
+                            customerEmail,
+                            status,
+                            productIds
+                        })
+                    });
+                    showSuccess('Order updated successfully');
+                    closeEditModal();
+                    loadOrders();
+                } catch (error) {
+                    console.error('Error updating order:', error);
+                }
+            }
+
+            async function deleteOrder() {
+                const id = document.getElementById('editId').value;
+                try {
+                    await fetchAPI(`${API_BASE_URL}/orders/${id}`, {
+                        method: 'DELETE'
+                    });
+                    showSuccess('Order deleted successfully');
+                    closeEditModal();
+                    loadOrders();
+                } catch (error) {
+                    console.error('Error deleting order:', error);
+                }
+            }
+
+            // Load data on page load
+            document.addEventListener('DOMContentLoaded', () => {
+                loadProducts();
+                loadOrders();
+            });
+        </script>
+    </body>
+</html>
