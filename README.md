@@ -32,3 +32,41 @@ Baza danych dowolna, sugeruję SQLite.
 :white_check_mark: 4.5 | Należy stworzyć widoki do wszystkich kontrolerów [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/41ca7ff4abe2f1c39db21b2fff650d9b2e92514a)
 
 :x: 5.0 | Stworzenie panelu administracyjnego
+
+## **ZADANIE 3** Wzorce kreacyjne
+Sprint Boot (Kotlin)
+
+Należy stworzyć prosty serwis do autoryzacji, który zasymuluje autoryzację
+użytkownika za pomocą przesłanej nazwy użytkownika oraz hasła.
+Serwis powinien zostać wstrzyknięty do kontrolera (4.5).
+Aplikacja ma zawierać jeden kontroler i powinna zostać napisana
+w języku Kotlin. Oparta powinna zostać na frameworku Spring Boot.
+Serwis do autoryzacji powinien być singletonem.
+
+:white_check_mark: 3.0 | Należy stworzyć jeden kontroler wraz z danymi wyświetlanymi z listy na endpoincie w formacie JSON - Kotlin + Spring Boot [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/fb6735430e262b83da54d90e08539061f4cb333f)
+
+:white_check_mark: 3.5 | Należy stworzyć klasę do autoryzacji (mock) jako Singleton w formie eager [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/35fb9af8fc04782a2a91d1a3b2d999049b7f7968)
+
+:white_check_mark: 4.0 | Należy obsłużyć dane autoryzacji przekazywane przez użytkownika [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/9f668f02cb9b8c6de4453885c17185c2a7934c10)
+
+:white_check_mark: 4.5 | Należy wstrzyknąć singleton do głównej klasy via @Autowired lub kontruktor (constructor injection) [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/3352fbd8baceac4a3ef9b4f07e65d57f98c424fe)
+
+:white_check_mark: 5.0 | Obok wersji Eager do wyboru powinna być wersja Singletona w wersji lazy [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/36b04356d7cdc9df5a800ee87afe820d9aa843c8)
+
+## **ZADANIE 4** Wzorce strukturalne
+Echo (Go)
+
+Należy stworzyć aplikację w Go na frameworku echo.
+Aplikacja ma mieć jeden endpoint, minimum jedną funkcję proxy,
+która pobiera dane np. o pogodzie, giełdzie, etc. (do wyboru) z zewnętrznego API.
+Zapytania do endpointu można wysyłać jako GET lub POST.
+
+:x: 3.0 | Należy stworzyć aplikację we frameworki echo w j. Go, która będzie miała kontroler Pogody, która pozwala na pobieranie danych o pogodzie (lub akcjach giełdowych)
+
+:x: 3.5 | Należy stworzyć model Pogoda (lub Giełda) wykorzystując gorm, a dane załadować z listy przy uruchomieniu
+
+:x: 4.0 | Należy stworzyć klasę proxy, która pobierze dane z serwisu zewnętrznego podczas zapytania do naszego kontrolera
+
+:x: 4.5 | Należy zapisać pobrane dane z zewnątrz do bazy danych
+
+:x: 5.0 | Należy rozszerzyć endpoint na więcej niż jedną lokalizację (Pogoda), lub akcje (Giełda) zwracając JSONa
