@@ -4,6 +4,7 @@ import com.kmielniczek.zadanie_3.model.Note
 import com.kmielniczek.zadanie_3.service.AuthService
 import java.nio.charset.StandardCharsets
 import java.util.Base64
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
@@ -14,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("/api/note")
-class UserController(private val authService: AuthService) {
+class UserController @Autowired constructor(private val authService: AuthService) {
     private val products =
             listOf(
                     Note(1, "groceries", "milk, cheese, bread"),
