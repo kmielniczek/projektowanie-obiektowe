@@ -61,12 +61,12 @@ Aplikacja ma mieć jeden endpoint, minimum jedną funkcję proxy,
 która pobiera dane np. o pogodzie, giełdzie, etc. (do wyboru) z zewnętrznego API.
 Zapytania do endpointu można wysyłać jako GET lub POST.
 
-:x: 3.0 | Należy stworzyć aplikację we frameworki echo w j. Go, która będzie miała kontroler Pogody, która pozwala na pobieranie danych o pogodzie (lub akcjach giełdowych)
+:white_check_mark: 3.0 | Należy stworzyć aplikację we frameworki echo w j. Go, która będzie miała kontroler Pogody, która pozwala na pobieranie danych o pogodzie (lub akcjach giełdowych) [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/c52324bc401820b91fbac09b84f78dcc6f054b20)
 
-:x: 3.5 | Należy stworzyć model Pogoda (lub Giełda) wykorzystując gorm, a dane załadować z listy przy uruchomieniu
+:white_check_mark: 3.5 | Należy stworzyć model Pogoda (lub Giełda) wykorzystując gorm, a dane załadować z listy przy uruchomieniu [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/cf5d3a5a0d22c5fce7c08f22265f0f0b4483e7b1)
 
-:x: 4.0 | Należy stworzyć klasę proxy, która pobierze dane z serwisu zewnętrznego podczas zapytania do naszego kontrolera
+:white_check_mark: 4.0 | Należy stworzyć klasę proxy, która pobierze dane z serwisu zewnętrznego podczas zapytania do naszego kontrolera [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/7847a20e09888fb480fb475c4392843e328a9fe2)
 
-:x: 4.5 | Należy zapisać pobrane dane z zewnątrz do bazy danych
+:white_check_mark: 4.5 | Należy zapisać pobrane dane z zewnątrz do bazy danych [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/1ad6486d98d3f88d2c635e9193c1d9a82eaec80d)
 
-:x: 5.0 | Należy rozszerzyć endpoint na więcej niż jedną lokalizację (Pogoda), lub akcje (Giełda) zwracając JSONa
+:white_check_mark: 5.0 | Należy rozszerzyć endpoint na więcej niż jedną lokalizację (Pogoda), lub akcje (Giełda) zwracając JSONa [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/1ad6486d98d3f88d2c635e9193c1d9a82eaec80d)
