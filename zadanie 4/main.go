@@ -23,7 +23,7 @@ func main() {
 	}
 
 	e := echo.New()
-	weatherProxy := proxy.NewOpenMeteoProxy()
+	weatherProxy := proxy.NewOpenMeteoProxy(db)
 	weatherController := controller.NewWeatherController(db, weatherProxy)
 
 	e.GET("/weather", weatherController.GetWeather)

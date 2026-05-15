@@ -2,11 +2,15 @@ package proxy
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"net/url"
 	"time"
 	"zadanie4/model"
+
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 const (
@@ -15,11 +19,13 @@ const (
 )
 
 type OpenMeteoProxy struct {
+	db         *gorm.DB
 	httpClient *http.Client
 }
 
-func NewOpenMeteoProxy() *OpenMeteoProxy {
+func NewOpenMeteoProxy(db *gorm.DB) *OpenMeteoProxy {
 	return &OpenMeteoProxy{
+		db:         db,
 		httpClient: &http.Client{Timeout: 10 * time.Second},
 	}
 }
@@ -39,6 +45,33 @@ type forecastResponse struct {
 }
 
 func (p *OpenMeteoProxy) GetCurrentWeather(city string) (*model.Weather, error) {
+	var stored model.Weather
+
+	err := p.db.Where("city = ?", city).First(&stored).Error
+	if err == nil {
+		if time.Since(stored.UpdatedAt) < time.Minute*15 {
+			return &stored, nil
+		}
+	} else if !errors.Is(err, gorm.ErrRecordNotFound) {
+		return nil, err
+	}
+
+	fresh, err := p.fetchCurrentWeather(city)
+	if err != nil {
+		return nil, err
+	}
+
+	if err := p.db.Clauses(clause.OnConflict{
+		Columns:   []clause.Column{{Name: "city"}},
+		UpdateAll: true,
+	}).Create(fresh).Error; err != nil {
+		return nil, err
+	}
+
+	return fresh, nil
+}
+
+func (p *OpenMeteoProxy) fetchCurrentWeather(city string) (*model.Weather, error) {
 	lat, lon, err := p.getCityCordinates(city)
 	if err != nil {
 		return nil, err
