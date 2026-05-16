@@ -16,6 +16,7 @@ Druga procedura sortuje liczbę za pomocą sortowania bąbelkowego.
 
 :x: 5.0 | Skrypt w bashu do uruchamiania aplikacji w Pascalu via docker
 
+
 ## **ZADANIE 2** Wzorce architektury
 Symfony (PHP)
 
@@ -32,6 +33,7 @@ Baza danych dowolna, sugeruję SQLite.
 :white_check_mark: 4.5 | Należy stworzyć widoki do wszystkich kontrolerów [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/41ca7ff4abe2f1c39db21b2fff650d9b2e92514a)
 
 :x: 5.0 | Stworzenie panelu administracyjnego
+
 
 ## **ZADANIE 3** Wzorce kreacyjne
 Sprint Boot (Kotlin)
@@ -53,6 +55,7 @@ Serwis do autoryzacji powinien być singletonem.
 
 :white_check_mark: 5.0 | Obok wersji Eager do wyboru powinna być wersja Singletona w wersji lazy [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/36b04356d7cdc9df5a800ee87afe820d9aa843c8)
 
+
 ## **ZADANIE 4** Wzorce strukturalne
 Echo (Go)
 
@@ -70,3 +73,49 @@ Zapytania do endpointu można wysyłać jako GET lub POST.
 :white_check_mark: 4.5 | Należy zapisać pobrane dane z zewnątrz do bazy danych [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/1ad6486d98d3f88d2c635e9193c1d9a82eaec80d)
 
 :white_check_mark: 5.0 | Należy rozszerzyć endpoint na więcej niż jedną lokalizację (Pogoda), lub akcje (Giełda) zwracając JSONa [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/1ad6486d98d3f88d2c635e9193c1d9a82eaec80d)
+
+
+## **ZADANIE 5** Wzorce behawioralne
+React (JavaScript/TypeScript)
+
+:x: 3.0 | W ramach projektu należy stworzyć komponenty Produkty oraz Płatności; komponent Produkty powinien pobierać listę produktów z aplikacji serwerowej, natomiast komponent Płatności powinien wysyłać dane płatności do aplikacji serwerowej.
+
+:x: 3.5 | Należy dodać komponent Koszyk wraz z osobnym widokiem; aplikacja powinna umożliwiać przechodzenie pomiędzy widokami przy użyciu routingu.
+
+:x: 4.0 | Dane pomiędzy komponentami, takimi jak Produkty, Koszyk i Płatności, powinny być przekazywane z wykorzystaniem React hooks, np. useState, useEffect lub useContext.
+
+:x: 4.5 | Należy przygotować konfigurację umożliwiającą uruchomienie aplikacji klienckiej oraz serwerowej w kontenerach Docker za pomocą docker-compose.
+
+:x: 5.0 | Należy wykorzystać bibliotekę axios do komunikacji z serwerem oraz skonfigurować obsługę CORS, aby frontend mógł poprawnie komunikować się z backendem.
+
+
+## **ZADANIE 6** Zapaszki
+Należy sprawdzić kod projektów JS 3.0, 3.5, 4.0,  kotlin, go, js - 4.5, 5.0.
+
+:x: 3.0 | Należy skonfigurować husky + lint-staged uruchamianie lintowania przed commitem
+
+:x: 3.5 | Należy wyeliminować wszystkie bugi w kodzie w Sonarze (kod aplikacji klienckiej)
+
+:x: 4.0 | Przeskanować oraz naprawić dowolny projekt open source narzędziem CodeQL https://codeql.github.com/
+
+:x: 4.5 | Należy usunąć problemy typu Code Smell w kodzie w Sonarze (kotlin, go, js). Należy dodać badge z Sonara
+
+:x: 5.0 | Skonfigurować Github Actions z linterem oraz CodeQL
+
+
+## **ZADANIE 7**
+Proszę napisać prostą aplikację w Vaporze,
+wykorzystując Leaf jako silnik szablonów or Fluent jako ORM.
+Proszę stworzyć trzy modele oraz CRUD dla każdego z nich.
+Należy stworzyć model z minimum jedną relacją.
+CRUD powinien mieć odzwierciedlenie w szablonach.
+
+:x: 3.0 | Należy stworzyć kontroler wraz z modele Produktów zgodny z CRUD w ORM Fluent
+
+:x: 3.5 | Należy stworzyć szablony w Leaf
+
+:x: 4.0 | Należy stworzyć drugi model oraz kontroler Kategorii wraz z relacją
+
+:x: 4.5 | Należy wykorzystać Redis do przechowywania danych
+
+:x: 5.0 | Wrzucić aplikację na heroku
