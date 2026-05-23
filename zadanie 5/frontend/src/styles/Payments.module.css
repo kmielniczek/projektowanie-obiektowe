@@ -1,0 +1,102 @@
+.payments-container {
+    composes: pageContainer from './shared.module.css';
+}
+
+.cart-summary {
+    composes: cardMuted cardPadding from './shared.module.css';
+    margin-bottom: 2rem;
+}
+
+.summary-items {
+    composes: summaryList from './shared.module.css';
+}
+
+.summary-item {
+    composes: summaryRow from './shared.module.css';
+}
+
+.summary-total {
+    composes: summaryTotal from './shared.module.css';
+}
+
+.payment-form {
+    composes: form from './shared.module.css';
+}
+
+.form-group {
+    composes: formGroup from './shared.module.css';
+}
+
+.form-label {
+    composes: formLabel from './shared.module.css';
+}
+
+.form-field {
+    composes: field from './shared.module.css';
+}
+
+.submit-button {
+    composes: buttonPrimary from './shared.module.css';
+    width: 100%;
+}
+
+.post-payment-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    width: 100%;
+}
+
+.paymentStatus {
+    composes: card cardPadding from './shared.module.css';
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+.pending {
+    background-color: #fff3e0;
+    color: #e65100;
+    border: 1px solid #ffe0b2;
+}
+
+.completed {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.failed {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+.paymentStatus p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.paymentStatus.pending,
+.paymentStatus.pending p {
+    color: #e65100;
+}
+
+.paymentStatus.completed,
+.paymentStatus.completed p {
+    color: #2e7d32;
+}
+
+.paymentStatus.failed,
+.paymentStatus.failed p {
+    color: #c62828;
+}
+
+.payment-error {
+    color: #c62828;
+    font-size: 0.95rem;
+    margin-top: 0.75rem;
+}

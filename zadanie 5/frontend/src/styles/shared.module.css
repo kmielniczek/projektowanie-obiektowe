@@ -1,0 +1,152 @@
+.pageContainer {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.cardMuted {
+    background-color: var(--bg-muted);
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.cardPadding {
+    padding: 1.5rem;
+}
+
+.cardShadow {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cardShadow:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.summaryList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+    color: var(--muted-color);
+    font-size: 0.95rem;
+}
+
+.summaryRow:last-child {
+    border-bottom: none;
+}
+
+.summaryTotal {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    border-top: 2px solid #ddd;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.form {
+    background-color: var(--bg-muted);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    color: var(--text-color, #222);
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formLabel {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.field {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: white;
+    color: var(--text-color, #222);
+}
+
+.field:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.buttonPrimary {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--accent-color, #1976d2);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    opacity: 1;
+}
+
+.buttonPrimary:hover:not(:disabled) {
+    background-color: #1565c0;
+}
+
+.buttonPrimary:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+}
+
+.buttonDanger {
+    padding: 0.5rem 1rem;
+    background-color: #d32f2f;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+}
+
+.buttonDanger:hover {
+    background-color: #c62828;
+}
+
+.priceText {
+    color: var(--accent-color, #1976d2);
+    font-weight: bold;
+}
+
+.mutedText {
+    color: #666666;
+}
+
+.errorBanner {
+    color: #d32f2f;
+    padding: 1rem;
+    background-color: #ffebee;
+    border-radius: 4px;
+}
