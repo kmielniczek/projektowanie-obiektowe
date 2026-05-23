@@ -78,15 +78,17 @@ Zapytania do endpointu można wysyłać jako GET lub POST.
 ## **ZADANIE 5** Wzorce behawioralne
 React (JavaScript/TypeScript)
 
-:x: 3.0 | W ramach projektu należy stworzyć komponenty Produkty oraz Płatności; komponent Produkty powinien pobierać listę produktów z aplikacji serwerowej, natomiast komponent Płatności powinien wysyłać dane płatności do aplikacji serwerowej.
+:white_check_mark: 3.0 | W ramach projektu należy stworzyć komponenty Produkty oraz Płatności; komponent Produkty powinien pobierać listę produktów z aplikacji serwerowej, natomiast komponent Płatności powinien wysyłać dane płatności do aplikacji serwerowej.
 
-:x: 3.5 | Należy dodać komponent Koszyk wraz z osobnym widokiem; aplikacja powinna umożliwiać przechodzenie pomiędzy widokami przy użyciu routingu.
+:white_check_mark: 3.5 | Należy dodać komponent Koszyk wraz z osobnym widokiem; aplikacja powinna umożliwiać przechodzenie pomiędzy widokami przy użyciu routingu.
 
-:x: 4.0 | Dane pomiędzy komponentami, takimi jak Produkty, Koszyk i Płatności, powinny być przekazywane z wykorzystaniem React hooks, np. useState, useEffect lub useContext.
+:white_check_mark: 4.0 | Dane pomiędzy komponentami, takimi jak Produkty, Koszyk i Płatności, powinny być przekazywane z wykorzystaniem React hooks, np. useState, useEffect lub useContext.
 
-:x: 4.5 | Należy przygotować konfigurację umożliwiającą uruchomienie aplikacji klienckiej oraz serwerowej w kontenerach Docker za pomocą docker-compose.
+:white_check_mark: 4.5 | Należy przygotować konfigurację umożliwiającą uruchomienie aplikacji klienckiej oraz serwerowej w kontenerach Docker za pomocą docker-compose.
 
-:x: 5.0 | Należy wykorzystać bibliotekę axios do komunikacji z serwerem oraz skonfigurować obsługę CORS, aby frontend mógł poprawnie komunikować się z backendem.
+:white_check_mark: 5.0 | Należy wykorzystać bibliotekę axios do komunikacji z serwerem oraz skonfigurować obsługę CORS, aby frontend mógł poprawnie komunikować się z backendem.
+
+[commit zbiorczy](https://github.com/kmielniczek/projektowanie-obiektowe/commit/5a2aa23b66d0870f7aac4dc55351819945b0d541)
 
 
 ## **ZADANIE 6** Zapaszki
