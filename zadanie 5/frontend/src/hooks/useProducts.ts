@@ -13,7 +13,7 @@ export const useProducts = () => {
     try {
       const data = await getProducts();
       setProducts(data);
-    } catch (err) {
+    } catch {
       setError("Failed to fetch products");
     } finally {
       setLoading(false);
@@ -21,6 +21,7 @@ export const useProducts = () => {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchProducts();
   }, [fetchProducts]);
 
