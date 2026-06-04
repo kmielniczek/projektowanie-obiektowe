@@ -94,15 +94,18 @@ React (JavaScript/TypeScript)
 ## **ZADANIE 6** Zapaszki
 Należy sprawdzić kod projektów JS 3.0, 3.5, 4.0,  kotlin, go, js - 4.5, 5.0.
 
-:x: 3.0 | Należy skonfigurować husky + lint-staged uruchamianie lintowania przed commitem
+:white_check_mark: 3.0 | Należy skonfigurować husky + lint-staged uruchamianie lintowania przed commitem [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/13449409ad91671ebcc12902cb091cbe9bf6ac9b)
 
-:x: 3.5 | Należy wyeliminować wszystkie bugi w kodzie w Sonarze (kod aplikacji klienckiej)
+:white_check_mark: 3.5 | Należy wyeliminować wszystkie bugi w kodzie w Sonarze (kod aplikacji klienckiej)
 
-:x: 4.0 | Przeskanować oraz naprawić dowolny projekt open source narzędziem CodeQL https://codeql.github.com/
+:white_check_mark: 4.0 | Przeskanować oraz naprawić dowolny projekt open source narzędziem CodeQL https://codeql.github.com/ | [commit](https://github.com/kmielniczek/todo-merns-fork-projektowanie-obiektowe/commit/b6d4b7b5cced8c3e740d1a714112ee0b3e93b9ae)
 
-:x: 4.5 | Należy usunąć problemy typu Code Smell w kodzie w Sonarze (kotlin, go, js). Należy dodać badge z Sonara
+:white_check_mark: 4.5 | Należy usunąć problemy typu Code Smell w kodzie w Sonarze (kotlin, go, js). Należy dodać badge z Sonara [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/517ec71b6e859eec97330e51482f4064c4d62cf1), [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/95f7885fce0642af8dedce51b23c8d35adc16f0e)
 
-:x: 5.0 | Skonfigurować Github Actions z linterem oraz CodeQL
+:white_check_mark: 5.0 | Skonfigurować Github Actions z linterem oraz CodeQL [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/933b5961b62870568a68ad6f12c45bc08258577c), [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/780354c0329ae22a294e7218da4af1608b46c7d4)
+
+Badge Sonar:
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=kmielniczek_projektowanie-obiektowe&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=kmielniczek_projektowanie-obiektowe)
 
 
 ## **ZADANIE 7**
