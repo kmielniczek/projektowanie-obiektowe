@@ -1,0 +1,30 @@
+name: Lint zadanie 5 backend
+
+on:
+  pull_request:
+    paths:
+      - "zadanie 5/backend/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "zadanie 5/backend/**"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v8
+        with:
+          version: latest
+          working-directory: "zadanie 5/backend"
