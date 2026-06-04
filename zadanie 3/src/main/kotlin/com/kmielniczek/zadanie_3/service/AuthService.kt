@@ -1,6 +1,6 @@
 package com.kmielniczek.zadanie_3.service
 
-interface AuthService {
+fun interface AuthService {
     fun authorize(mail: String, password: String): Boolean
 }
 

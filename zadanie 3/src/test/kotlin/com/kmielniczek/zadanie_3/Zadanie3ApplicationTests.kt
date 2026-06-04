@@ -8,6 +8,7 @@ class Zadanie3ApplicationTests {
 
 	@Test
 	fun contextLoads() {
+		// Verifies if application can load and run
 	}
 
 }
