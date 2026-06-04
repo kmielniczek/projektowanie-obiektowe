@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useMemo } from "react";
 import type { ReactNode } from "react";
 import type { Product } from "../types/product";
 import type { CartItem } from "../types/cart";
@@ -19,8 +19,17 @@ export const ShopProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const props = useMemo(() => {
+    return {
+      cart,
+      addToCart,
+      removeFromCart,
+      updateQuantity,
+      clearCart,
+    };
+  }, [cart]);
 
-  const addToCart = (product: Product) => {
+  function addToCart(product: Product) {
     setCart((prevCart) => {
       const existingItem = prevCart.find(
         (item) => item.product_id === product.id,
@@ -42,17 +51,19 @@ export const ShopProvider: React.FC<{ children: ReactNode }> = ({
         },
       ];
     });
-  };
+  }
 
-  const removeFromCart = (productId: number) => {
+  function removeFromCart(productId: number) {
     setCart((prevCart) =>
       prevCart.filter((item) => item.product_id !== productId),
     );
-  };
+  }
 
-  const updateQuantity = (productId: number, quantity: number) => {
+  function updateQuantity(productId: number, quantity: number) {
     if (quantity <= 0 || Number.isNaN(quantity)) {
-      removeFromCart(productId);
+      setCart((prevCart) =>
+        prevCart.filter((item) => item.product_id !== productId),
+      );
       return;
     }
     setCart((prevCart) =>
@@ -60,23 +71,11 @@ export const ShopProvider: React.FC<{ children: ReactNode }> = ({
         item.product_id === productId ? { ...item, quantity } : item,
       ),
     );
-  };
+  }
 
-  const clearCart = () => {
+  function clearCart() {
     setCart([]);
-  };
+  }
 
-  return (
-    <ShopContext.Provider
-      value={{
-        cart,
-        addToCart,
-        removeFromCart,
-        updateQuantity,
-        clearCart,
-      }}
-    >
-      {children}
-    </ShopContext.Provider>
-  );
+  return <ShopContext.Provider value={props}>{children}</ShopContext.Provider>;
 };

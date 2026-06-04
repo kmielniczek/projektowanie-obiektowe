@@ -8,17 +8,20 @@ RUN go mod download
 
 RUN apk add --no-cache gcc musl-dev sqlite-dev
 
-COPY . .
+COPY controllers database models main.go ./
 RUN CGO_ENABLED=1 GOOS=linux go build -a -installsuffix cgo -o main .
 
 # final
-FROM alpine:latest
+FROM alpine:3.23.4
 
-RUN apk add --no-cache sqlite
+RUN apk add --no-cache sqlite \
+    && addgroup -S appgroup && adduser -S appuser -G appgroup
 
 WORKDIR /app
 
 COPY --from=builder /app/main .
+
+USER appuser
 
 EXPOSE 8080
 

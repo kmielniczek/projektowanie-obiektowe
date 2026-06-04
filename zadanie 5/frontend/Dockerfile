@@ -2,11 +2,15 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json package-lock.json ./
 RUN npm ci --silent
 
-COPY . .
+COPY public src index.html eslint.config.js \
+    tsconfig.json tsconfig.app.json tsconfig.node.json vite.config.ts ./
+
 RUN npm run build
+
+USER node
 
 EXPOSE 5173
 

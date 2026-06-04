@@ -55,7 +55,10 @@ export const Cart: React.FC = () => {
                 min="1"
                 value={item.quantity}
                 onChange={(e) =>
-                  updateQuantity(item.product_id, parseInt(e.target.value))
+                  updateQuantity(
+                    item.product_id,
+                    Number.parseInt(e.target.value),
+                  )
                 }
                 className={styles["quantity-input"]}
               />
@@ -82,7 +85,7 @@ export const Cart: React.FC = () => {
           onClick={handleCheckout}
           disabled={creatingCart}
         >
-          {!creatingCart ? "Go to payment" : "Preparing Payment..."}
+          {creatingCart ? "Preparing Payment..." : "Go to payment"}
         </button>
       </div>
       {error && <p className={styles["checkout-error"]}>{error}</p>}

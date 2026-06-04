@@ -66,7 +66,25 @@ export const Payments: React.FC = () => {
         </div>
       )}
 
-      {!paymentSent ? (
+      {paymentSent ? (
+        <div className={styles["post-payment-actions"]}>
+          <div
+            className={`${styles.paymentStatus} ${styles[paymentStatus] || ""}`}
+          >
+            <p>
+              Payment Status: <strong>{paymentStatus.toUpperCase()}</strong>
+            </p>
+          </div>
+
+          <button
+            type="button"
+            className={styles["submit-button"]}
+            onClick={() => navigate("/")}
+          >
+            Back to products
+          </button>
+        </div>
+      ) : (
         <form onSubmit={handleSubmit} className={styles["payment-form"]}>
           <div className={styles["form-group"]}>
             <label htmlFor="method" className={styles["form-label"]}>
@@ -90,27 +108,9 @@ export const Payments: React.FC = () => {
             className={styles["submit-button"]}
             disabled={submittingPayment}
           >
-            {!submittingPayment ? "Pay" : "Processing..."}
+            {submittingPayment ? "Processing..." : "Pay"}
           </button>
         </form>
-      ) : (
-        <div className={styles["post-payment-actions"]}>
-          <div
-            className={`${styles.paymentStatus} ${styles[paymentStatus] || ""}`}
-          >
-            <p>
-              Payment Status: <strong>{paymentStatus.toUpperCase()}</strong>
-            </p>
-          </div>
-
-          <button
-            type="button"
-            className={styles["submit-button"]}
-            onClick={() => navigate("/")}
-          >
-            Back to products
-          </button>
-        </div>
       )}
 
       {error && <p className={styles["payment-error"]}>{error}</p>}
