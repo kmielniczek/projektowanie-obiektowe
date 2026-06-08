@@ -1,0 +1,6 @@
+selenium
+webdriver-manager
+pytest
+pytest-playwright
+playwright
+requests

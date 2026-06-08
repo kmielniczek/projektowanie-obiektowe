@@ -1,0 +1,74 @@
+.authContainer {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.authContainer h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formLabel {
+  font-weight: 500;
+}
+
+.field {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.fieldError {
+  border-color: #d32f2f;
+}
+
+.errorText {
+  color: #d32f2f;
+  font-size: 0.9rem;
+}
+
+.successText {
+  color: #2e7d32;
+  font-size: 0.95rem;
+}
+
+.submitButton {
+  padding: 0.75rem 1.5rem;
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.submitButton:disabled {
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+.authLink {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.authLink a {
+  color: #1976d2;
+}

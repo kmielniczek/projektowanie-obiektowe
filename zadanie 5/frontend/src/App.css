@@ -45,6 +45,22 @@
   background-color: rgba(255, 255, 255, 0.35);
 }
 
+.nav-button {
+  color: white;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .cart-badge {
   display: inline-flex;
   align-items: center;

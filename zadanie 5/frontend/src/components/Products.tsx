@@ -26,17 +26,27 @@ export const Products: React.FC = () => {
 
   return (
     <div className={styles["products-container"]}>
-      <h2>Products</h2>
+      <h2 data-testid="products-heading">Products</h2>
       {products.length === 0 ? (
         <p>No products available</p>
       ) : (
         <div className={styles["products-grid"]}>
           {products.map((product: Product) => (
-            <div key={product.id} className={styles["product-card"]}>
-              <h3>{product.name}</h3>
-              <p className={styles.productPrice}>${product.price.toFixed(2)}</p>
+            <div
+              key={product.id}
+              className={styles["product-card"]}
+              data-testid={`product-card-${product.id}`}
+            >
+              <h3 data-testid={`product-name-${product.id}`}>{product.name}</h3>
+              <p
+                className={styles.productPrice}
+                data-testid={`product-price-${product.id}`}
+              >
+                ${product.price.toFixed(2)}
+              </p>
               <button
                 className={styles["add-to-cart-btn"]}
+                data-testid={`add-to-cart-${product.id}`}
                 onClick={() => addToCart(product)}
               >
                 Add to Cart

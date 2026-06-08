@@ -34,7 +34,9 @@ export const Cart: React.FC = () => {
     return (
       <div className={styles["cart-container"]}>
         <h2>Shopping Cart</h2>
-        <p className={styles["empty-cart"]}>Your cart is empty</p>
+        <p className={styles["empty-cart"]} data-testid="empty-cart-message">
+          Your cart is empty
+        </p>
       </div>
     );
   }
@@ -44,7 +46,11 @@ export const Cart: React.FC = () => {
       <h2>Shopping Cart</h2>
       <div className={styles["cart-items"]}>
         {cart.map((item) => (
-          <div key={item.product_id} className={styles["cart-item"]}>
+          <div
+            key={item.product_id}
+            className={styles["cart-item"]}
+            data-testid={`cart-item-${item.product_id}`}
+          >
             <div className={styles["item-info"]}>
               <h3>{item.name}</h3>
               <p className={styles.itemPrice}>${item.price.toFixed(2)}</p>
@@ -61,9 +67,11 @@ export const Cart: React.FC = () => {
                   )
                 }
                 className={styles["quantity-input"]}
+                data-testid={`cart-quantity-${item.product_id}`}
               />
               <button
                 className={styles["remove-btn"]}
+                data-testid={`remove-item-${item.product_id}`}
                 onClick={() => removeFromCart(item.product_id)}
               >
                 Remove
@@ -76,12 +84,13 @@ export const Cart: React.FC = () => {
         ))}
       </div>
       <div className={styles["cart-summary"]}>
-        <h3 className={styles["summary-total"]}>
+        <h3 className={styles["summary-total"]} data-testid="cart-total">
           Total: ${cartTotal.toFixed(2)}
         </h3>
         <button
           type="button"
           className={styles["checkout-btn"]}
+          data-testid="checkout-button"
           onClick={handleCheckout}
           disabled={creatingCart}
         >

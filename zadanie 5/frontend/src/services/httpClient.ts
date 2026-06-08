@@ -2,15 +2,28 @@ import axios from "axios";
 import type { Product } from "../types/product";
 import type { Payment } from "../types/payment";
 import type { Cart, CartItem } from "../types/cart";
+import { getCsrfToken } from "./csrf";
 
-const baseURL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api";
+const baseURL = import.meta.env.VITE_API_BASE_URL || "/api";
 
 const httpClient = axios.create({
   baseURL,
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
+});
+
+httpClient.interceptors.request.use((config) => {
+  if (config.url === "/csrf") {
+    return config;
+  }
+
+  const token = getCsrfToken();
+  if (token) {
+    config.headers["X-CSRF-Token"] = token;
+  }
+  return config;
 });
 
 export async function getProducts(): Promise<Product[]> {

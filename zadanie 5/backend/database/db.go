@@ -19,7 +19,7 @@ func InitDB() error {
 		return err
 	}
 
-	err = DB.AutoMigrate(&models.Product{}, &models.Payment{}, &models.Cart{}, &models.CartItem{})
+	err = DB.AutoMigrate(&models.Product{}, &models.Payment{}, &models.Cart{}, &models.CartItem{}, &models.User{})
 	if err != nil {
 		log.Fatal("failed to migrate database:", err)
 		return err

@@ -46,7 +46,7 @@ export const Payments: React.FC = () => {
 
   return (
     <div className={styles["payments-container"]}>
-      <h2>Payment</h2>
+      <h2 data-testid="payment-heading">Payment</h2>
       {cart.length > 0 && (
         <div className={styles["cart-summary"]}>
           <h3>Order Summary</h3>
@@ -60,7 +60,7 @@ export const Payments: React.FC = () => {
               </div>
             ))}
           </div>
-          <div className={styles["summary-total"]}>
+          <div className={styles["summary-total"]} data-testid="payment-amount">
             <strong>Total: ${amount.toFixed(2)}</strong>
           </div>
         </div>
@@ -71,7 +71,7 @@ export const Payments: React.FC = () => {
           <div
             className={`${styles.paymentStatus} ${styles[paymentStatus] || ""}`}
           >
-            <p>
+            <p data-testid="payment-status">
               Payment Status: <strong>{paymentStatus.toUpperCase()}</strong>
             </p>
           </div>
@@ -92,6 +92,7 @@ export const Payments: React.FC = () => {
             </label>
             <select
               id="method"
+              data-testid="payment-method"
               value={method}
               onChange={(event) => setMethod(event.target.value)}
               className={styles["form-field"]}
@@ -106,6 +107,7 @@ export const Payments: React.FC = () => {
           <button
             type="submit"
             className={styles["submit-button"]}
+            data-testid="payment-submit"
             disabled={submittingPayment}
           >
             {submittingPayment ? "Processing..." : "Pay"}
