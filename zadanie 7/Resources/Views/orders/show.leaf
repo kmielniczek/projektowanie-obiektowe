@@ -1,0 +1,37 @@
+#extend("base"):
+    #export("content"):
+        <div class="card">
+            <h2>Order details</h2>
+            <p><strong>Customer:</strong> #(order.customerName)</p>
+            <p><strong>Date:</strong> #(order.createdAt)</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Unit price</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    #for(item in cartItems):
+                        <tr>
+                            <td>#(item.productName)</td>
+                            <td>#(item.quantity)</td>
+                            <td>#(item.priceFormatted) PLN</td>
+                            <td>#(item.subtotalFormatted) PLN</td>
+                        </tr>
+                    #endfor
+                </tbody>
+            </table>
+            <p class="total">Total: #(totalFormatted) PLN</p>
+            <div class="actions">
+                <a class="btn btn-secondary" href="/orders/#(order.id)/edit">Edit</a>
+                <form class="inline" method="post" action="/orders/#(order.id)/delete">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+                <a class="btn btn-secondary" href="/orders">Back to list</a>
+            </div>
+        </div>
+    #endexport
+#endextend

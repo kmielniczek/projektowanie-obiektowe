@@ -1,0 +1,44 @@
+#extend("base"):
+    #export("content"):
+        <div class="card">
+            <h2>Products</h2>
+            <p><a class="btn" href="/products/create">New product</a></p>
+            #if(count(products) > 0):
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #for(product in products):
+                            <tr>
+                                <td><a href="/products/#(product.id)">#(product.name)</a></td>
+                                <td>#(product.categoryName)</td>
+                                <td>#(product.priceFormatted) PLN</td>
+                                <td class="actions">
+                                    <form class="inline" method="post"
+                                        action="/cart/add/#(product.id)">
+                                        <input type="submit" class="btn" value="Add to cart">
+                                    </form>
+                                    <a class="btn btn-secondary"
+                                        href="/products/#(product.id)/edit">Edit</a>
+                                    <form class="inline" method="post"
+                                        action="/products/#(product.id)/delete">
+                                        <input type="submit" class="btn btn-danger"
+                                            value="Delete">
+                                    </form>
+                                </td>
+                            </tr>
+                        #endfor
+                    </tbody>
+                </table>
+            #else:
+                <p>No products yet.</p>
+            #endif
+        </div>
+    #endexport
+#endextend

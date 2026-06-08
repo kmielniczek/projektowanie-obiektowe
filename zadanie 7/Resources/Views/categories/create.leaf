@@ -1,0 +1,15 @@
+#extend("base"):
+    #export("content"):
+        <div class="card">
+            <h2>New category</h2>
+            <form method="post" action="/categories">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                <div class="actions">
+                    <input type="submit" class="btn" value="Create">
+                    <a class="btn btn-secondary" href="/categories">Cancel</a>
+                </div>
+            </form>
+        </div>
+    #endexport
+#endextend

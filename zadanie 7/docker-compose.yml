@@ -1,0 +1,62 @@
+# Docker Compose file for Vapor
+#
+#   Build and start app + Redis:  docker compose up -d
+#   Stop all:                      docker compose down
+#   Run migrations manually:       docker compose --profile tools run --rm migrate
+#   Revert migrations manually:    docker compose --profile tools run --rm revert
+#
+
+x-shared_environment: &shared_environment
+  LOG_LEVEL: ${LOG_LEVEL:-debug}
+  REDIS_HOST: redis
+  REDIS_PORT: 6379
+
+services:
+  redis:
+    image: redis:8
+    ports:
+      - '6379:6379'
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+  app:
+    image: shop:latest
+    build:
+      context: .
+    environment:
+      <<: *shared_environment
+    ports:
+      - '8080:8080'
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    command: ['serve', '--env', 'production', '--hostname', '0.0.0.0', '--port', '8080']
+
+  migrate:
+    profiles: [tools]
+    image: shop:latest
+    build:
+      context: .
+    environment:
+      <<: *shared_environment
+    depends_on:
+      redis:
+        condition: service_healthy
+    command: ['migrate', '--yes']
+
+  revert:
+    profiles: [tools]
+    image: shop:latest
+    build:
+      context: .
+    environment:
+      <<: *shared_environment
+    depends_on:
+      redis:
+        condition: service_healthy
+    command: ['migrate', '--revert', '--yes']

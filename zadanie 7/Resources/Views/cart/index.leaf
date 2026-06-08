@@ -1,0 +1,60 @@
+#extend("base"):
+    #export("content"):
+        <div class="card">
+            <h2>Cart</h2>
+            #if(count(cartItems) > 0):
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        #for(item in cartItems):
+                            <tr>
+                                <td>#(item.name)</td>
+                                <td>#(item.priceFormatted) PLN</td>
+                                <td>
+                                    <form method="post" action="/cart/update">
+                                        <input type="hidden" name="productID"
+                                            value="#(item.productID)">
+                                        <input type="number" name="quantity"
+                                            value="#(item.quantity)" min="1"
+                                            style="max-width:80px">
+                                        <input type="submit" class="btn btn-secondary"
+                                            value="Update">
+                                    </form>
+                                </td>
+                                <td>#(item.subtotalFormatted) PLN</td>
+                                <td>
+                                    <form class="inline" method="post"
+                                        action="/cart/remove/#(item.productID)">
+                                        <input type="submit" class="btn btn-danger"
+                                            value="Remove">
+                                    </form>
+                                </td>
+                            </tr>
+                        #endfor
+                    </tbody>
+                </table>
+                <p class="total">Total: #(totalFormatted) PLN</p>
+                <h3>Checkout</h3>
+                <form method="post" action="/cart/place">
+                    <label for="customerName">Customer name</label>
+                    <input type="text" id="customerName" name="customerName" required>
+                    <div class="actions">
+                        <input type="submit" class="btn" value="Place order">
+                        <a class="btn btn-secondary" href="/products">Continue shopping</a>
+                    </div>
+                </form>
+            #else:
+                <p>Your cart is empty.</p>
+                <a class="btn" href="/products">Browse products</a>
+            #endif
+        </div>
+    #endexport
+#endextend

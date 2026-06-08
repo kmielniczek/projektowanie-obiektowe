@@ -1,0 +1,21 @@
+#extend("base"):
+    #export("content"):
+        <div class="card">
+            <h2>#(product.name)</h2>
+            <p><strong>Category:</strong> #(product.categoryName)</p>
+            <p><strong>Price:</strong> #(product.priceFormatted) PLN</p>
+            <div class="actions">
+                <form class="inline" method="post" action="/cart/add/#(product.id)">
+                    <input type="submit" class="btn" value="Add to cart">
+                </form>
+                <a class="btn btn-secondary"
+                    href="/products/#(product.id)/edit">Edit</a>
+                <form class="inline" method="post"
+                    action="/products/#(product.id)/delete">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+                <a class="btn btn-secondary" href="/products">Back to list</a>
+            </div>
+        </div>
+    #endexport
+#endextend

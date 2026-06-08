@@ -1,0 +1,38 @@
+#extend("base"):
+    #export("content"):
+        <div class="card">
+            <h2>#(category.name)</h2>
+            <div class="actions">
+                <a class="btn btn-secondary" href="/categories/#(category.id)/edit">Edit</a>
+                <form class="inline" method="post" action="/categories/#(category.id)/delete">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+                <a class="btn" href="/categories">Back to list</a>
+            </div>
+            <h3>Products in this category</h3>
+            #if(count(products) > 0):
+                <table>
+                    <thead>
+                        <tr><th>Name</th><th>Price</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody>
+                        #for(product in products):
+                            <tr>
+                                <td><a href="/products/#(product.id)">#(product.name)</a></td>
+                                <td>#(product.priceFormatted) PLN</td>
+                                <td class="actions">
+                                    <a class="btn btn-secondary" href="/products/#(product.id)">View</a>
+                                    <form class="inline" method="post" action="/cart/add/#(product.id)">
+                                        <input type="submit" class="btn" value="Add to cart">
+                                    </form>
+                                </td>
+                            </tr>
+                        #endfor
+                    </tbody>
+                </table>
+            #else:
+                <p>No products in this category.</p>
+            #endif
+        </div>
+    #endexport
+#endextend
