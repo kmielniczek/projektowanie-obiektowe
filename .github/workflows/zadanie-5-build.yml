@@ -1,0 +1,73 @@
+name: Build Zadanie 5 project
+
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "zadanie 5/**"
+  push:
+    branches: ["main"]
+    paths:
+      - "zadanie 5/**"
+
+jobs:
+  build-backend:
+    name: Build Backend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "./zadanie 5/backend"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: ">=1.26.3"
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Build
+        run: go build -v ./...
+
+      - name: Test
+        run: go test -v ./...
+
+  build-frontend:
+    name: Build Frontend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "./zadanie 5/frontend"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+  build-docker:
+    name: Verify Docker Compose Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: "./zadanie 5"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Build Docker images
+        run: docker compose build
