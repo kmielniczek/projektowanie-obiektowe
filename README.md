@@ -155,11 +155,11 @@ innej karcie.
 
 
 ## **ZADANIE 9**
-:x: 3.0 | Należy stworzyć odpowiednie instancje po stronie chmury na dockerze
+:white_check_mark: 3.0 | Należy stworzyć odpowiednie instancje po stronie chmury na dockerze [instancja na chmurze](https://zadanie5-frontend-532300763202.europe-central2.run.app/)
 
-:x: 3.5 | Stworzyć odpowiedni pipeline w Github Actions do budowania aplikacji
+:white_check_mark: 3.5 | Stworzyć odpowiedni pipeline w Github Actions do budowania aplikacji [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/50a137190bc36df4ae3e76af8e0ffe74f16f19fa) | [build action status](https://github.com/kmielniczek/projektowanie-obiektowe/actions/runs/27232930486)
 
-:x: 4.0 | Dodać notyfikację mailową o zbudowaniu aplikacji
+:white_check_mark: 4.0 | Dodać notyfikację mailową o zbudowaniu aplikacji [commit](https://github.com/kmielniczek/projektowanie-obiektowe/commit/4e8b2146b87023d5b4503bf69f89890d36f58c3c)
 
 :x: 4.5 | Dodać krok z deploymentem aplikacji serwerowej oraz klienckiej nachmurę
 
