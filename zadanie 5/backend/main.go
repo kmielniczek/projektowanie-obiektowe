@@ -19,7 +19,12 @@ func main() {
 
 	e := echo.New()
 
-	sessionStore := sessions.NewCookieStore([]byte("zadanie5-session-secret-key"))
+	sessionSecret := os.Getenv("SESSION_SECRET")
+	if sessionSecret == "" {
+		log.Fatal("session secret key is required, set with SESSION_SECRET")
+	}
+
+	sessionStore := sessions.NewCookieStore([]byte(sessionSecret))
 	sessionStore.Options = &sessions.Options{
 		Path:     "/",
 		MaxAge:   86400,

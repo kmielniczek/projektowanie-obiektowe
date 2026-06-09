@@ -8,7 +8,10 @@ RUN go mod download
 
 RUN apk add --no-cache gcc musl-dev sqlite-dev
 
-COPY --parents controllers database models main.go ./
+COPY controllers/ ./controllers/
+COPY database/ ./database/
+COPY models/ ./models/
+COPY main.go ./
 RUN CGO_ENABLED=1 GOOS=linux go build -a -installsuffix cgo -o main .
 
 # final

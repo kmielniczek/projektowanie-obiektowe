@@ -5,7 +5,9 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --silent
 
-COPY --parents public src index.html eslint.config.js \
+COPY public/ ./public/
+COPY src/ ./src/
+COPY index.html eslint.config.js \
     tsconfig.json tsconfig.app.json tsconfig.node.json vite.config.ts ./
 
 RUN npm run build
